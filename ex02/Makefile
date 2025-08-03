@@ -1,7 +1,5 @@
 NAME = templates
 
-HEADERS = Ass.hpp
-
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -g -std=c++98
 
@@ -12,7 +10,7 @@ all: $(NAME)
 $(UTILS):
 	$(MAKE) -C $(UTILS_DIR)
 
-$(NAME): $(HEADERS)
+$(NAME):
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 clean:
