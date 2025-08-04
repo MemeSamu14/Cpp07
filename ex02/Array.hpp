@@ -6,7 +6,7 @@
 /*   By: sfiorini <sfiorini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 15:04:38 by sfiorini          #+#    #+#             */
-/*   Updated: 2025/08/04 12:24:56 by sfiorini         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:44:58 by sfiorini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,20 @@ class Array
 				this->array[i] = 0;
 			this->s = n;
 		};
-		Array(const Array &a): array(a.array){};
+		Array(const Array &a)
+		{
+			array = NULL;
+			*this = a;
+		};
 		const Array& operator=(const Array &a)
 		{
-			delete[] this->array;
+			if (this->array != NULL)
+				delete[] this->array;
 			array = new T[a.size()];
-			for (int i = 0; a.array[i]; i++)
+			for (int i = 0; i < a.size(); i++)
 				this->array[i] = a.array[i];
+			this->s = a.size();
+			return (*this);
 		};
 		int	size() const { return (static_cast<int>(this->s)); };
 		~Array(){ delete[] array; };
@@ -55,12 +62,12 @@ class Array
 			return (this->array[idx]);
 		};
 };
-
-// template <typename T>
-// std::ostream& operator<<(std::ostream& os, const T& a)
-// {
-// 	os << a << std::endl;
-// 	return os;
-// }
+	
+	// template <typename T>
+	// std::ostream& operator<<(std::ostream& os, const T& a)
+	// {
+	// 	os << a << std::endl;
+	// 	return os;
+	// }
 
 #endif
