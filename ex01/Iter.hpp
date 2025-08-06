@@ -42,8 +42,8 @@ const	T&	max(T& a, T& b)
 }
 
 
-template <typename T>
-void	iter(T* addres, const int len, void (*func)(T&))
+template <typename T, typename FuncType>
+void	iter(T* addres, const int len, FuncType func)
 {
 	for(int	i = 0; i < len; i++)
 	{
